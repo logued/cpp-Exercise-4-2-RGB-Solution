@@ -18,7 +18,8 @@ struct Rgb {
     float r, g, b;
 };
 
-void display_pixel_rgb( Rgb& pixel);
+void display_pixel_rgb( const Rgb& pixel);
+void apply_red_filter( Rgb& pixel );
 
 int main() {
     std::cout << "RGB Pixel representation" << std::endl;
@@ -32,7 +33,10 @@ int main() {
     display_pixel_rgb( blackPixel );
     display_pixel_rgb( pinkPixel );
 
-    // apply the red fileter to white pixel
+    //TODO apply the red filter to the whitePixel
+    // then, display whitePixel
+    apply_red_filter(whitePixel);
+    display_pixel_rgb(whitePixel);
 
 
     return 0;
@@ -48,4 +52,9 @@ void display_pixel_rgb( const Rgb& pixel ) {
 
 void apply_red_filter( Rgb& pixel ) {
 
+    //TODO a red filter sets all other fields to zero
+    // (and leaves red as it was) code here....
+
+    pixel.g = 0.0;
+    pixel.b = 0.0;
 }
