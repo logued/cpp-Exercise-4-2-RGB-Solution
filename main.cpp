@@ -73,6 +73,9 @@ int main() {
 
     blackout_image_pointer_notation(width, height, image);
 
+    delete [] image;    // FREE up the allocated memory to avoid memory leaks.
+    image = nullptr;    // prevent dangling pointers.
+
     // Extra:
     // If we wanted to Dynamically Allocate the memory block,
     // but with no constructor call, then we could do the following:
@@ -103,6 +106,8 @@ int main() {
     cout << "First pixel, red value = " << ptr_Rgb->red << endl;
     cout << "First pixel, green value = " << ptr_Rgb->green << endl;
     cout << "First pixel, blue value = " << ptr_Rgb->blue << endl;
+
+    delete [] buffer;   // free up the dynamically allocated buffer memory block
 
     cout << "Program finished, goodbye!";
     return 0;
