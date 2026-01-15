@@ -54,7 +54,7 @@ int main() {
     //TODO Dynamically Allocate a block of memory
     // to store an image of size 20 x 10 pixels
 
-    int width = 20; // image dimensions (that we may read from a file)
+    int width = 10; // image dimensions (that we may read from a file)
     int height = 10;
     int total_pixels = width * height; // image size in pixels (width x height)
 
@@ -63,11 +63,14 @@ int main() {
     // being called for each Rgb object in the array,
     // setting all fields to 0.0
 
-    cout << "All pixels in image:" << endl;
+    cout << "R,G,and B values for all pixels making up the image:" << endl;
     for (int i = 0; i < total_pixels; i++) {
         cout << image[i].red << ":"      // fields are public in a struct
              << image[i].green << ":"
              << image[i].blue << " ";
+        if (i % width == width - 1) {
+            cout << endl;
+        }
     }
 
     blackout_image_array_notation(width, height, image);
@@ -109,6 +112,9 @@ int main() {
     cout << "First pixel, blue value = " << ptr_Rgb->blue << endl;
 
     delete [] buffer;   // free up the dynamically allocated buffer memory block
+    // Note that the buffer was declared as an array of char, so we need to use the "[]"
+    // when deleting/freeing up the buffer memory.
+
     buffer = nullptr;
     cout << "Program finished, goodbye!";
     return 0;
