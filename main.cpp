@@ -1,24 +1,24 @@
 #include <iostream>
 using namespace std;
 
-// Exercise 4 Question 2 - RGB Pixel struct                  March 2022
+// Exercise 4 Question 2 - RGB Pixel struct            Feb 2026
 
-// Rgb struct (class) represents a pixel with Red, Green & Blue channels
-// Each channel (colour) is represented by an intensity value in range 0.0->1.0
+// Rgb struct (class) represents a one pixel with Red, Green & Blue channels
+// Each channel (colour) is represented by an intensity value in range 0.0->1.0 (floating point value)
 
 struct Rgb {
     // Member variables (fields) are PUBLIC in a struct
-    float red;    // red, green, and blue data members (fields)
-    float green;
-    float blue;
+    float _red;    // red, green, and blue data members (fields)
+    float _green;
+    float _blue;
 
     // No-argument Constructor that uses an initializer list to
     // set default values of 0.0 for the three fields.
-    Rgb() : red(0), green(0), blue(0) {}
+    Rgb() : _red(0), _green(0), _blue(0) {}
 
     // Constructor that takes three float values representing
     // the intensity of Red, Green, Blue (1.0 is full intensity)
-    Rgb(float r, float g, float b) : red(r), green(g), blue(b) {}
+    Rgb(float red, float green, float blue) : _red(red), _green(green), _blue(blue) {}
 };
 
 void display_pixel_rgb(const Rgb &pixel);
@@ -27,7 +27,7 @@ void apply_red_filter(Rgb &pixel);
 
 void blackout_image_array_notation(int width, int height, Rgb image[]);
 
-void blackout_image_pointer_notation(int width, int height, Rgb *ptr_image);
+void blackout_image_pointer_notation(int width, int height, Rgb *ptr_Rgb);
 
 int main() {
     std::cout << "RGB Pixel representation" << std::endl;
@@ -65,9 +65,9 @@ int main() {
 
     cout << "R,G,and B values for all pixels making up the image:" << endl;
     for (int i = 0; i < total_pixels; i++) {
-        cout << image[i].red << ":"      // fields are public in a struct
-             << image[i].green << ":"
-             << image[i].blue << " ";
+        cout << image[i]._red << ":"      // fields are public in a struct
+             << image[i]._green << ":"
+             << image[i]._blue << " ";
         if (i % width == width - 1) {
             cout << endl;
         }
@@ -107,9 +107,9 @@ int main() {
     // now use pointer to Rgb struct to access
     cout << "Access first pixel in array using ptr_Rgb:"<<endl;
 
-    cout << "First pixel, red value = " << ptr_Rgb->red << endl;
-    cout << "First pixel, green value = " << ptr_Rgb->green << endl;
-    cout << "First pixel, blue value = " << ptr_Rgb->blue << endl;
+    cout << "First pixel, red value = " << ptr_Rgb->_red << endl;
+    cout << "First pixel, green value = " << ptr_Rgb->_green << endl;
+    cout << "First pixel, blue value = " << ptr_Rgb->_blue << endl;
 
     delete [] buffer;   // free up the dynamically allocated buffer memory block
     // Note that the buffer was declared as an array of char, so we need to use the "[]"
@@ -124,9 +124,9 @@ int main() {
 // for a nRgb pixel object.
 //
 void display_pixel_rgb(const Rgb &pixel) {    // parameter is a reference to a constant Rgb struct
-    cout << "Red=" << pixel.red << ":"
-         << " Green=" << pixel.green << ":"
-         << " Blue=" << pixel.blue << endl;
+    cout << "Red=" << pixel._red << ":"
+         << " Green=" << pixel._green << ":"
+         << " Blue=" << pixel._blue << endl;
 }
 
 // Reference parameter does not use "const" because
@@ -137,8 +137,8 @@ void apply_red_filter(Rgb &pixel) {
     //TODO a red filter sets all other fields to zero
     // (and leaves red as it was) code here....
 
-    pixel.green = 0.0;
-    pixel.blue = 0.0;
+    pixel._green = 0.0;
+    pixel._blue = 0.0;
 }
 
 // Array notation.  The image[] parameter is an array of Rgb structs.
@@ -147,22 +147,23 @@ void apply_red_filter(Rgb &pixel) {
 //
 void blackout_image_array_notation(int width, int height, Rgb image[]) {
     for (int i = 0; i < width * height; i++) {
-        image[i].red = 0.0;
-        image[i].green = 0.0;
-        image[i].blue = 0.0;
+        image[i]._red = 0.0;
+        image[i]._green = 0.0;
+        image[i]._blue = 0.0;
     }
 }
 
 // Uses pointer notation.  Parameter declared as a pointer to an Rgb struct.
 // In this function, we manipulate the pointer using pointer arithmetic to
 // iterate through the elements of the array.
+// Each Rgb struct represents one pixel.
 //
 void blackout_image_pointer_notation(int width, int height, Rgb *ptr_Rgb) {
 
     for (int i = 0; i < width * height; i++) {
-        ptr_Rgb->red = 0.0;
-        ptr_Rgb->green = 0.0;
-        ptr_Rgb->blue = 0.0;
+        ptr_Rgb->_red = 0.0;
+        ptr_Rgb->_green = 0.0;
+        ptr_Rgb->_blue = 0.0;
         ptr_Rgb++;  // increment pointer (by the length of one Rgb structure)
     }
 }
