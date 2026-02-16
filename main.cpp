@@ -14,7 +14,7 @@ struct Rgb {
 
     // No-argument Constructor that uses an initializer list to
     // set default values of 0.0 for the three fields.
-    Rgb() : _red(0), _green(0), _blue(0) {}
+    Rgb() : _red(0), _green(0), _blue(0) {}   // _red(0) initializes field _red to zero
 
     // Constructor that takes three float values representing
     // the intensity of Red, Green, Blue (1.0 is full intensity)
