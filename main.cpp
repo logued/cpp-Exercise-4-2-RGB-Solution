@@ -21,13 +21,13 @@ struct Rgb {
     Rgb(float red, float green, float blue) : _red(red), _green(green), _blue(blue) {}
 };
 
-void display_pixel_rgb(const Rgb &pixel);
+void display_pixel_rgb(const Rgb & pixel);
 
-void apply_red_filter(Rgb &pixel);
+void apply_red_filter(Rgb & pixel);
 
 void blackout_image_array_notation(int width, int height, Rgb image[]);
 
-void blackout_image_pointer_notation(int width, int height, Rgb *ptr_Rgb);
+void blackout_image_pointer_notation(int width, int height, Rgb * ptr_Rgb);
 
 int main() {
     std::cout << "RGB Pixel representation" << std::endl;
@@ -59,9 +59,9 @@ int main() {
     int total_pixels = width * height; // image size in pixels (width x height)
 
     Rgb * image = new Rgb[total_pixels];  // constant pointer to an image
-    // The above call will result in the no-argument constructor
-    // being called for each Rgb object in the array,
-    // setting all fields to 0.0
+    // The above array definition will result in the no-argument constructor
+    // being called for each Rgb object created in the array,
+    // setting all fields to 0.0 (See constructor definition)
 
     cout << "R,G,and B values for all pixels making up the image:" << endl;
     for (int i = 0; i < total_pixels; i++) {
@@ -123,7 +123,7 @@ int main() {
 // Display the Red, Green and Blue channel intensities
 // for a nRgb pixel object.
 //
-void display_pixel_rgb(const Rgb &pixel) {    // parameter is a reference to a constant Rgb struct
+void display_pixel_rgb(const Rgb & pixel) {    // parameter is a reference to a constant Rgb struct
     cout << "Red=" << pixel._red << ":"
          << " Green=" << pixel._green << ":"
          << " Blue=" << pixel._blue << endl;
@@ -132,7 +132,7 @@ void display_pixel_rgb(const Rgb &pixel) {    // parameter is a reference to a c
 // Reference parameter does not use "const" because
 // the reference needs to modify the passed Rgb struct
 //
-void apply_red_filter(Rgb &pixel) {
+void apply_red_filter(Rgb & pixel) {
 
     //TODO a red filter sets all other fields to zero
     // (and leaves red as it was) code here....
